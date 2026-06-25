@@ -3,83 +3,123 @@
   <head>
     <meta charset="UTF-8" />
 
+    <!-- Responsive -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#070B1A" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
 
-    <!-- Responsive -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- SEO principal -->
-    <title>Internet Sans Piège | Apprendre à déjouer les arnaques en ligne</title>
+    <!-- SEO -->
+    <title>
+      Internet Sans Piège | Testez votre vigilance face aux arnaques numériques
+    </title>
 
     <meta
       name="description"
-      content="Internet Sans Piège est un parcours interactif de sensibilisation aux arnaques numériques : phishing, faux SMS, faux supports techniques, usurpation d'identité, Wi-Fi piégé et bons réflexes de cybersécurité."
+      content="Internet Sans Piège est un parcours interactif gratuit permettant de tester vos réflexes face aux arnaques numériques : phishing, faux SMS, faux conseillers bancaires, QR Codes suspects, Wi-Fi piégés, usurpation d'identité et cybersécurité."
     />
 
     <meta
       name="keywords"
-      content="cybersécurité, arnaques internet, phishing, faux SMS, sécurité numérique, prévention numérique, sensibilisation cybersécurité, atelier cybersécurité, pièges internet, usurpation identité, faux support technique"
+      content="cybersécurité, phishing, faux SMS, faux mail, QR Code, usurpation d'identité, faux conseiller bancaire, sécurité internet, prévention numérique, conférence cybersécurité, atelier cybersécurité, Internet Sans Piège"
     />
 
-    <meta name="author" content="Internet Sans Piège" />
-    <meta name="robots" content="index, follow" />
-    <meta name="theme-color" content="#070B1A" />
+    <meta name="author" content="Jérémie Garod" />
+    <meta name="robots" content="index,follow" />
+    <meta name="copyright" content="© Jérémie Garod" />
+    <meta name="application-name" content="Internet Sans Piège" />
+    <meta name="category" content="Education" />
+
+    <!-- Canonical -->
+    <link
+      rel="canonical"
+      href="https://internet-sans-piege.netlify.app/"
+    />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Internet Sans Piège" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:site_name" content="Internet Sans Piège" />
+
+    <meta
+      property="og:title"
+      content="Internet Sans Piège | Testez votre vigilance face aux arnaques numériques"
+    />
+
     <meta
       property="og:description"
-      content="Un parcours interactif pour apprendre à reconnaître et éviter les pièges d'Internet."
+      content="Un parcours interactif gratuit pour apprendre à reconnaître les principales arnaques numériques grâce à des mises en situation réalistes."
     />
-    <meta property="og:image" content="/images/preview.png" />
-    <meta property="og:url" content="https://internet-sans-piege.netlify.app/" />
-    <meta property="og:site_name" content="Internet Sans Piège" />
-    <meta property="og:locale" content="fr_FR" />
+
+    <meta
+      property="og:image"
+      content="https://internet-sans-piege.netlify.app/images/preview.png"
+    />
+
+    <meta
+      property="og:url"
+      content="https://internet-sans-piege.netlify.app/"
+    />
 
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Internet Sans Piège" />
+
+    <meta
+      name="twitter:title"
+      content="Internet Sans Piège | Testez votre vigilance"
+    />
+
     <meta
       name="twitter:description"
-      content="Apprenez à repérer les arnaques numériques grâce à une expérience interactive."
+      content="Découvrez gratuitement votre niveau de vigilance face aux arnaques en ligne grâce à un parcours interactif."
     />
-    <meta name="twitter:image" content="/images/preview.png" />
 
-    <!-- Mobile / PWA léger -->
-    <meta name="application-name" content="Internet Sans Piège" />
-    <meta name="apple-mobile-web-app-title" content="Internet Sans Piège" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta
+      name="twitter:image"
+      content="https://internet-sans-piege.netlify.app/images/preview.png"
+    />
 
-    <!-- Canonical -->
-    <link rel="canonical" href="https://internet-sans-piege.netlify.app/" />
+    <!-- Mobile -->
+    <meta
+      name="apple-mobile-web-app-title"
+      content="Internet Sans Piège"
+    />
 
-    <!-- Données structurées -->
+    <meta
+      name="apple-mobile-web-app-capable"
+      content="yes"
+    />
+
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+
+    <!-- Schema.org -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "WebApplication",
         "name": "Internet Sans Piège",
         "url": "https://internet-sans-piege.netlify.app/",
-        "description": "Parcours interactif de sensibilisation aux arnaques numériques et aux bons réflexes de cybersécurité.",
+        "description": "Parcours interactif de sensibilisation aux arnaques numériques permettant d'améliorer ses réflexes face aux menaces du quotidien.",
         "applicationCategory": "EducationalApplication",
         "operatingSystem": "Web",
         "inLanguage": "fr-FR",
         "creator": {
-          "@type": "Organization",
-          "name": "Internet Sans Piège"
+          "@type": "Person",
+          "name": "Jérémie Garod"
         },
-        "keywords": [
-          "cybersécurité",
-          "phishing",
-          "arnaques internet",
-          "faux SMS",
-          "sécurité numérique",
-          "prévention numérique"
-        ]
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "EUR"
+        }
       }
     </script>
   </head>

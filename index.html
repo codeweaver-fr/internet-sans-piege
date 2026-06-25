@@ -1,11 +1,89 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    <!-- Responsive -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>internet-sans-piege</title>
+
+    <!-- SEO principal -->
+    <title>Internet Sans Piège | Apprendre à déjouer les arnaques en ligne</title>
+
+    <meta
+      name="description"
+      content="Internet Sans Piège est un parcours interactif de sensibilisation aux arnaques numériques : phishing, faux SMS, faux supports techniques, usurpation d'identité, Wi-Fi piégé et bons réflexes de cybersécurité."
+    />
+
+    <meta
+      name="keywords"
+      content="cybersécurité, arnaques internet, phishing, faux SMS, sécurité numérique, prévention numérique, sensibilisation cybersécurité, atelier cybersécurité, pièges internet, usurpation identité, faux support technique"
+    />
+
+    <meta name="author" content="Internet Sans Piège" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#070B1A" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Internet Sans Piège" />
+    <meta
+      property="og:description"
+      content="Un parcours interactif pour apprendre à reconnaître et éviter les pièges d'Internet."
+    />
+    <meta property="og:image" content="/images/preview.png" />
+    <meta property="og:url" content="https://internet-sans-piege.netlify.app/" />
+    <meta property="og:site_name" content="Internet Sans Piège" />
+    <meta property="og:locale" content="fr_FR" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Internet Sans Piège" />
+    <meta
+      name="twitter:description"
+      content="Apprenez à repérer les arnaques numériques grâce à une expérience interactive."
+    />
+    <meta name="twitter:image" content="/images/preview.png" />
+
+    <!-- Mobile / PWA léger -->
+    <meta name="application-name" content="Internet Sans Piège" />
+    <meta name="apple-mobile-web-app-title" content="Internet Sans Piège" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://internet-sans-piege.netlify.app/" />
+
+    <!-- Données structurées -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Internet Sans Piège",
+        "url": "https://internet-sans-piege.netlify.app/",
+        "description": "Parcours interactif de sensibilisation aux arnaques numériques et aux bons réflexes de cybersécurité.",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "Web",
+        "inLanguage": "fr-FR",
+        "creator": {
+          "@type": "Organization",
+          "name": "Internet Sans Piège"
+        },
+        "keywords": [
+          "cybersécurité",
+          "phishing",
+          "arnaques internet",
+          "faux SMS",
+          "sécurité numérique",
+          "prévention numérique"
+        ]
+      }
+    </script>
   </head>
+
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>

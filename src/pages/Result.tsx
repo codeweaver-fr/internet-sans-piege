@@ -455,7 +455,7 @@ export default function Result({ score, onRestart }: Props) {
                       <div>
                         <p className="form-kicker">Internet Sans Piège</p>
 
-                        <h3>Être informé des prochains événements</h3>
+                        <h3>Être informé des prochains événements (conférences, ateliers, etc.)</h3>
 
                         <p>
                           Laissez vos coordonnées pour être recontacté

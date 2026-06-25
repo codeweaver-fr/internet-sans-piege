@@ -273,7 +273,7 @@ export default function Result({ score, onRestart }: Props) {
 
       setSubmitStatus("success");
       setSubmitMessage(
-        "Votre demande a bien été envoyée. Vous serez recontacté si un événement est organisé.",
+        "Votre demande a bien été envoyée. Vous serez recontacté si un événement est organisé."
       );
 
       form.reset();
@@ -281,7 +281,7 @@ export default function Result({ score, onRestart }: Props) {
       console.error(error);
       setSubmitStatus("error");
       setSubmitMessage(
-        "L’envoi a échoué. Merci de vérifier votre connexion ou de réessayer plus tard.",
+        "L’envoi a échoué. Merci de vérifier votre connexion ou de réessayer plus tard."
       );
     }
   }
@@ -364,246 +364,6 @@ export default function Result({ score, onRestart }: Props) {
                 </div>
               </div>
             </div>
-
-            <AnimatePresence mode="wait">
-              {shouldOfferWorkshop && !declined && !showForm && (
-                <motion.div
-                  key="workshop"
-                  className="result-workshop-box"
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -8 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <p className="form-kicker">Accompagnement recommandé</p>
-
-                  <h3>Vous souhaitez aller plus loin ?</h3>
-
-                  <p>
-                    Votre résultat montre que certains réflexes peuvent être
-                    renforcés. Vous pouvez laisser vos coordonnées pour être
-                    informé des prochains événements Internet Sans Piège.
-                  </p>
-
-                  <div className="result-actions">
-                    <motion.button
-                      type="button"
-                      className="primary-btn"
-                      onClick={() => setShowForm(true)}
-                      whileHover={{ scale: 1.03, y: -1 }}
-                      whileTap={{ scale: 0.97 }}
-                    >
-                      Oui, je souhaite être informé
-                    </motion.button>
-
-                    <motion.button
-                      type="button"
-                      className="secondary-btn"
-                      onClick={handleDecline}
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.97 }}
-                    >
-                      Non merci
-                    </motion.button>
-                  </div>
-                </motion.div>
-              )}
-
-              {showForm && shouldOfferWorkshop && !declined && (
-                <motion.div
-                  key="form"
-                  className="result-form-card"
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -8 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  {submitStatus !== "success" ? (
-                    <form onSubmit={handleSubmit} className="result-form">
-                      <input
-                        type="hidden"
-                        name="source"
-                        value="Internet Sans Piège"
-                      />
-                      <input
-                        type="hidden"
-                        name="score"
-                        value={`${safeScore}/${MAX_SCORE}`}
-                      />
-                      <input
-                        type="hidden"
-                        name="pourcentage"
-                        value={`${percentage}%`}
-                      />
-                      <input type="hidden" name="niveau" value={result.level} />
-                      <input
-                        type="hidden"
-                        name="statut"
-                        value={result.status}
-                      />
-                      <input
-                        type="hidden"
-                        name="consentement"
-                        value="Oui, la personne accepte d'être recontactée au sujet des événements Internet Sans Piège."
-                      />
-                      <input
-                        type="hidden"
-                        name="date"
-                        value={new Date().toLocaleString("fr-FR")}
-                      />
-
-                      <div>
-                        <p className="form-kicker">Internet Sans Piège</p>
-
-                        <h3>Être informé des prochains événements (conférences, ateliers, etc.)</h3>
-
-                        <p>
-                          Laissez vos coordonnées pour être recontacté
-                          uniquement au sujet des événements Internet Sans
-                          Piège.
-                        </p>
-                      </div>
-
-                      <div className="form-grid">
-                        <input
-                          name="prenom"
-                          type="text"
-                          placeholder="Votre prénom"
-                          required
-                        />
-
-                        <input
-                          name="email"
-                          type="email"
-                          placeholder="Votre email"
-                          required
-                        />
-                      </div>
-
-                      <label className="form-consent">
-                        <input type="checkbox" required />
-                        <span>
-                          Les informations recueillies via ce formulaire sont
-                          utilisées uniquement pour vous recontacter au sujet
-                          des événements Internet Sans Piège. Elles ne sont ni
-                          revendues, ni utilisées à d’autres fins. Vous pouvez
-                          demander l’accès, la rectification ou la suppression
-                          de vos données à tout moment.
-                        </span>
-                      </label>
-
-                      {submitMessage && (
-                        <p className={`form-message ${submitStatus}`}>
-                          {submitMessage}
-                        </p>
-                      )}
-
-                      <div className="form-actions">
-                        <motion.button
-                          type="submit"
-                          className="form-submit"
-                          disabled={submitStatus === "loading"}
-                          whileHover={{ scale: 1.03 }}
-                          whileTap={{ scale: 0.97 }}
-                        >
-                          {submitStatus === "loading"
-                            ? "Envoi en cours..."
-                            : "Envoyer ma demande"}
-                        </motion.button>
-
-                        <button
-                          type="button"
-                          className="form-cancel"
-                          onClick={handleDecline}
-                        >
-                          Finalement non
-                        </button>
-                      </div>
-                    </form>
-                  ) : (
-                    <motion.div
-                      className="form-success"
-                      initial={{ opacity: 0, scale: 0.96 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                    >
-                      <h3>Demande envoyée</h3>
-                      <p>{submitMessage}</p>
-
-                      <button
-                        type="button"
-                        className="secondary-btn"
-                        onClick={onRestart}
-                      >
-                        Refaire le diagnostic
-                      </button>
-                    </motion.div>
-                  )}
-                </motion.div>
-              )}
-
-              {showThanks && (
-                <motion.div
-                  key="thanks"
-                  className="thanks-card"
-                  initial={{ opacity: 0, y: 18, scale: 0.96 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.35 }}
-                >
-                  <div className="thanks-icon">✓</div>
-
-                  <p className="form-kicker">Internet Sans Piège</p>
-
-                  <h3>Merci pour votre participation</h3>
-
-                  <p>
-                    Vous venez de réaliser le diagnostic Internet Sans Piège.
-                  </p>
-
-                  <p>
-                    Même sans laisser vos coordonnées, vous avez déjà fait un
-                    premier pas pour renforcer votre vigilance face aux
-                    principales arnaques numériques.
-                  </p>
-
-                  <p>
-                    N’hésitez pas à refaire le diagnostic dans quelques mois ou
-                    à le partager autour de vous.
-                  </p>
-
-                  <motion.button
-                    type="button"
-                    className="secondary-btn"
-                    onClick={onRestart}
-                    whileHover={{ scale: 1.03 }}
-                    whileTap={{ scale: 0.97 }}
-                  >
-                    Refaire le diagnostic
-                  </motion.button>
-                </motion.div>
-              )}
-
-              {!shouldOfferWorkshop && (
-                <motion.div
-                  key="restart"
-                  className="result-actions"
-                  initial={{ opacity: 0, y: 12 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <motion.button
-                    type="button"
-                    className="secondary-btn"
-                    onClick={onRestart}
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.97 }}
-                  >
-                    Refaire le diagnostic
-                  </motion.button>
-                </motion.div>
-              )}
-            </AnimatePresence>
           </motion.div>
 
           <motion.aside
@@ -657,6 +417,248 @@ export default function Result({ score, onRestart }: Props) {
               </motion.div>
             </div>
           </motion.aside>
+        </div>
+
+        <div className="result-bottom-flow">
+          <AnimatePresence mode="wait">
+            {shouldOfferWorkshop && !declined && !showForm && (
+              <motion.div
+                key="workshop"
+                className="result-workshop-box"
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.3 }}
+              >
+                <p className="form-kicker">
+                  Accompagnement recommandé à une prochaine conférence ou atelier
+                </p>
+
+                <h3>Vous souhaitez aller plus loin ?</h3>
+
+                <p>
+                  Votre résultat montre que certains réflexes peuvent être
+                  renforcés. Vous pouvez laisser vos coordonnées pour être
+                  informé des prochains événements Internet Sans Piège.
+                </p>
+
+                <div className="result-actions">
+                  <motion.button
+                    type="button"
+                    className="primary-btn"
+                    onClick={() => setShowForm(true)}
+                    whileHover={{ scale: 1.03, y: -1 }}
+                    whileTap={{ scale: 0.97 }}
+                  >
+                    Oui, je souhaite être informé
+                  </motion.button>
+
+                  <motion.button
+                    type="button"
+                    className="secondary-btn"
+                    onClick={handleDecline}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.97 }}
+                  >
+                    Non merci
+                  </motion.button>
+                </div>
+              </motion.div>
+            )}
+
+            {showForm && shouldOfferWorkshop && !declined && (
+              <motion.div
+                key="form"
+                className="result-form-card"
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.3 }}
+              >
+                {submitStatus !== "success" ? (
+                  <form onSubmit={handleSubmit} className="result-form">
+                    <input
+                      type="hidden"
+                      name="source"
+                      value="Internet Sans Piège"
+                    />
+                    <input
+                      type="hidden"
+                      name="score"
+                      value={`${safeScore}/${MAX_SCORE}`}
+                    />
+                    <input
+                      type="hidden"
+                      name="pourcentage"
+                      value={`${percentage}%`}
+                    />
+                    <input type="hidden" name="niveau" value={result.level} />
+                    <input type="hidden" name="statut" value={result.status} />
+                    <input
+                      type="hidden"
+                      name="consentement"
+                      value="Oui, la personne accepte d'être recontactée au sujet des événements Internet Sans Piège."
+                    />
+                    <input
+                      type="hidden"
+                      name="date"
+                      value={new Date().toLocaleString("fr-FR")}
+                    />
+
+                    <div>
+                      <p className="form-kicker">Internet Sans Piège</p>
+
+                      <h3>
+                        Être informé des prochains événements conférences,
+                        ateliers, etc.
+                      </h3>
+
+                      <p>
+                        Laissez vos coordonnées pour être recontacté uniquement
+                        au sujet des événements Internet Sans Piège.
+                      </p>
+                    </div>
+
+                    <div className="form-grid">
+                      <input
+                        name="prenom"
+                        type="text"
+                        placeholder="Votre prénom"
+                        required
+                      />
+
+                      <input
+                        name="email"
+                        type="email"
+                        placeholder="Votre email"
+                        required
+                      />
+                    </div>
+
+                    <label className="form-consent">
+                      <input type="checkbox" required />
+                      <span>
+                        Les informations recueillies via ce formulaire sont
+                        utilisées uniquement pour vous recontacter au sujet des
+                        événements Internet Sans Piège. Elles ne sont ni
+                        revendues, ni utilisées à d’autres fins. Vous pouvez
+                        demander l’accès, la rectification ou la suppression de
+                        vos données à tout moment.
+                      </span>
+                    </label>
+
+                    {submitMessage && (
+                      <p className={`form-message ${submitStatus}`}>
+                        {submitMessage}
+                      </p>
+                    )}
+
+                    <div className="form-actions">
+                      <motion.button
+                        type="submit"
+                        className="form-submit"
+                        disabled={submitStatus === "loading"}
+                        whileHover={{ scale: 1.03 }}
+                        whileTap={{ scale: 0.97 }}
+                      >
+                        {submitStatus === "loading"
+                          ? "Envoi en cours..."
+                          : "Envoyer ma demande"}
+                      </motion.button>
+
+                      <button
+                        type="button"
+                        className="form-cancel"
+                        onClick={handleDecline}
+                      >
+                        Finalement non
+                      </button>
+                    </div>
+                  </form>
+                ) : (
+                  <motion.div
+                    className="form-success"
+                    initial={{ opacity: 0, scale: 0.96 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                  >
+                    <h3>Demande envoyée</h3>
+                    <p>{submitMessage}</p>
+
+                    <button
+                      type="button"
+                      className="secondary-btn"
+                      onClick={onRestart}
+                    >
+                      Refaire le diagnostic
+                    </button>
+                  </motion.div>
+                )}
+              </motion.div>
+            )}
+
+            {showThanks && (
+              <motion.div
+                key="thanks"
+                className="thanks-card"
+                initial={{ opacity: 0, y: 18, scale: 0.96 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.35 }}
+              >
+                <div className="thanks-icon">✓</div>
+
+                <p className="form-kicker">Internet Sans Piège</p>
+
+                <h3>Merci pour votre participation</h3>
+
+                <p>
+                  Vous venez de réaliser le diagnostic Internet Sans Piège.
+                </p>
+
+                <p>
+                  Même sans laisser vos coordonnées, vous avez déjà fait un
+                  premier pas pour renforcer votre vigilance face aux principales
+                  arnaques numériques.
+                </p>
+
+                <p>
+                  N’hésitez pas à refaire le diagnostic dans quelques mois ou à
+                  le partager autour de vous.
+                </p>
+
+                <motion.button
+                  type="button"
+                  className="secondary-btn"
+                  onClick={onRestart}
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
+                >
+                  Refaire le diagnostic
+                </motion.button>
+              </motion.div>
+            )}
+
+            {!shouldOfferWorkshop && (
+              <motion.div
+                key="restart"
+                className="result-actions"
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                <motion.button
+                  type="button"
+                  className="secondary-btn"
+                  onClick={onRestart}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.97 }}
+                >
+                  Refaire le diagnostic
+                </motion.button>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </section>
     </main>

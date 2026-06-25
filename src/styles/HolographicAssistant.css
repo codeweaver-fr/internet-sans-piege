@@ -1,3 +1,7 @@
+/* ================================
+   HOLOGRAPHIC ASSISTANT — PREMIUM
+================================ */
+
 .holo-assistant {
   position: relative;
   width: min(100%, 320px);
@@ -14,53 +18,86 @@
   height: 310px;
 }
 
+/* ── Fond radial pulsant ── */
 .holo-assistant::before {
   content: "";
   position: absolute;
-  inset: 8%;
+  inset: 4%;
   border-radius: 50%;
-  background:
-    radial-gradient(circle, rgba(0, 213, 255, 0.2), transparent 64%);
-  filter: blur(30px);
+  background: radial-gradient(
+    circle,
+    rgba(0, 213, 255, 0.22) 0%,
+    rgba(100, 60, 255, 0.08) 50%,
+    transparent 72%
+  );
+  filter: blur(32px);
   z-index: 0;
   animation: holoPulse 3.6s ease-in-out infinite;
 }
 
+/* ── Lignes de scan CRT ── */
 .holo-assistant::after {
   content: "";
   position: absolute;
-  inset: 5% 14%;
-  border-radius: 28px;
-  border: 1px solid rgba(0, 213, 255, 0.08);
-  background:
-    linear-gradient(rgba(0, 213, 255, 0.035) 1px, transparent 1px);
-  background-size: 100% 8px;
+  inset: 5% 12%;
+  border-radius: 24px;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 213, 255, 0.032) 0px,
+    rgba(0, 213, 255, 0.032) 1px,
+    transparent 1px,
+    transparent 7px
+  );
   mix-blend-mode: screen;
-  opacity: 0.55;
   z-index: 4;
+  pointer-events: none;
+  animation: crtFlicker 8s step-end infinite;
 }
 
+@keyframes crtFlicker {
+  0%, 94%, 96%, 98%, 100% { opacity: 0.55; }
+  95%, 97%                 { opacity: 0.25; }
+}
+
+/* ── Halo ambiant ── */
 .holo-assistant-halo {
   position: absolute;
-  inset: 0;
+  inset: -10%;
   background:
-    radial-gradient(circle at 50% 42%, rgba(0, 213, 255, 0.24), transparent 62%);
-  filter: blur(28px);
+    radial-gradient(ellipse at 50% 44%, rgba(0, 213, 255, 0.28), transparent 58%),
+    radial-gradient(ellipse at 50% 80%, rgba(0, 120, 255, 0.12), transparent 52%);
+  filter: blur(26px);
   z-index: 0;
+  animation: haloBreath 5s ease-in-out infinite;
 }
 
+@keyframes haloBreath {
+  0%, 100% { opacity: 0.7; transform: scale(1); }
+  50%       { opacity: 1;   transform: scale(1.06); }
+}
+
+/* ── Scan line principale ── */
 .holo-assistant-scan {
   position: absolute;
-  left: 10%;
-  right: 10%;
+  left: 8%;
+  right: 8%;
   height: 2px;
-  background: linear-gradient(90deg, transparent, #00d5ff, transparent);
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(0, 213, 255, 0.6) 20%,
+    #00d5ff 50%,
+    rgba(0, 213, 255, 0.6) 80%,
+    transparent
+  );
   box-shadow:
-    0 0 18px #00d5ff,
-    0 0 36px rgba(0, 213, 255, 0.45);
-  z-index: 5;
+    0 0 12px #00d5ff,
+    0 0 28px rgba(0, 213, 255, 0.5),
+    0 0 60px rgba(0, 213, 255, 0.2);
+  z-index: 6;
+  border-radius: 2px;
 }
 
+/* ── Image holographique ── */
 .holo-assistant-image {
   width: 100%;
   height: 100%;
@@ -70,55 +107,188 @@
   z-index: 3;
   mix-blend-mode: screen;
   filter:
-    drop-shadow(0 0 14px rgba(0, 213, 255, 0.75))
-    drop-shadow(0 0 42px rgba(0, 213, 255, 0.42))
-    drop-shadow(0 26px 55px rgba(0, 0, 0, 0.38))
-    saturate(1.25)
-    contrast(1.08);
+    drop-shadow(0 0 10px rgba(0, 213, 255, 0.9))
+    drop-shadow(0 0 30px rgba(0, 213, 255, 0.55))
+    drop-shadow(0 0 70px rgba(0, 180, 255, 0.3))
+    drop-shadow(0 30px 60px rgba(0, 0, 0, 0.4))
+    saturate(1.3)
+    contrast(1.1)
+    brightness(1.08);
+  animation: holoFloat 6s ease-in-out infinite;
 }
 
+@keyframes holoFloat {
+  0%, 100% { transform: translateY(0px)   rotateY(0deg);   filter: brightness(1.08) saturate(1.3); }
+  30%       { transform: translateY(-6px)  rotateY(1.5deg); filter: brightness(1.14) saturate(1.4); }
+  70%       { transform: translateY(-4px)  rotateY(-1deg);  filter: brightness(1.1)  saturate(1.35); }
+}
+
+/* ── Reflets latéraux ── */
+.holo-assistant-image::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    rgba(0, 213, 255, 0.06) 0%,
+    transparent 40%,
+    rgba(0, 213, 255, 0.04) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ── Sol / projection ── */
 .holo-assistant-floor {
   position: absolute;
-  bottom: 12px;
+  bottom: 10px;
   left: 50%;
+  transform: translateX(-50%);
   width: 180px;
-  height: 22px;
+  height: 24px;
   border-radius: 50%;
-  border: 1px solid rgba(0, 213, 255, 0.28);
-  background:
-    radial-gradient(circle, rgba(0, 213, 255, 0.16), rgba(0, 213, 255, 0.04));
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 213, 255, 0.22) 0%,
+    rgba(0, 213, 255, 0.06) 60%,
+    transparent 100%
+  );
+  border: 1px solid rgba(0, 213, 255, 0.3);
   box-shadow:
-    0 0 24px rgba(0, 213, 255, 0.35),
-    inset 0 0 18px rgba(0, 213, 255, 0.16);
+    0 0 20px rgba(0, 213, 255, 0.3),
+    0 0 50px rgba(0, 213, 255, 0.12),
+    inset 0 0 16px rgba(0, 213, 255, 0.14);
   z-index: 1;
+  animation: floorPulse 3.6s ease-in-out infinite;
+}
+
+@keyframes floorPulse {
+  0%, 100% { opacity: 0.7; transform: translateX(-50%) scaleX(1);    }
+  50%       { opacity: 1;   transform: translateX(-50%) scaleX(1.08); }
 }
 
 .holo-assistant.compact .holo-assistant-floor {
-  width: 132px;
+  width: 130px;
   height: 18px;
-  bottom: 8px;
+  bottom: 6px;
 }
 
-@keyframes holoPulse {
-  0%,
-  100% {
-    opacity: 0.45;
-    transform: scale(1);
-  }
-
-  50% {
-    opacity: 0.9;
-    transform: scale(1.08);
-  }
+/* ── Particules orbitales ── */
+.holo-assistant-particles {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
 }
 
+.holo-particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #00d5ff;
+  box-shadow: 0 0 6px #00d5ff, 0 0 12px rgba(0,213,255,0.6);
+}
+
+.holo-particle:nth-child(1) {
+  top: 22%; left: 12%;
+  animation: particleOrbit1 4.2s ease-in-out infinite;
+}
+.holo-particle:nth-child(2) {
+  top: 55%; right: 10%;
+  width: 2px; height: 2px;
+  animation: particleOrbit2 5.8s ease-in-out infinite;
+  opacity: 0.7;
+}
+.holo-particle:nth-child(3) {
+  bottom: 28%; left: 18%;
+  width: 2px; height: 2px;
+  animation: particleOrbit3 3.9s ease-in-out infinite;
+  opacity: 0.6;
+}
+.holo-particle:nth-child(4) {
+  top: 35%; right: 14%;
+  animation: particleOrbit1 6.4s ease-in-out infinite reverse;
+  opacity: 0.5;
+}
+
+@keyframes particleOrbit1 {
+  0%, 100% { transform: translate(0, 0);      opacity: 0.8; }
+  25%       { transform: translate(6px, -8px); opacity: 1;   }
+  50%       { transform: translate(2px, -14px);opacity: 0.6; }
+  75%       { transform: translate(-4px, -6px);opacity: 0.9; }
+}
+@keyframes particleOrbit2 {
+  0%, 100% { transform: translate(0, 0);       opacity: 0.6; }
+  33%       { transform: translate(-8px, -6px); opacity: 1;   }
+  66%       { transform: translate(-3px, 8px);  opacity: 0.4; }
+}
+@keyframes particleOrbit3 {
+  0%, 100% { transform: translate(0, 0);      opacity: 0.5; }
+  40%       { transform: translate(8px, -4px); opacity: 0.9; }
+  80%       { transform: translate(4px, 6px);  opacity: 0.3; }
+}
+
+/* ── Anneau de base ── */
+.holo-assistant-ring {
+  position: absolute;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 220px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 213, 255, 0.18);
+  z-index: 0;
+  animation: ringRotate 8s linear infinite;
+  pointer-events: none;
+}
+
+.holo-assistant-ring::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 12%;
+  width: 20%;
+  height: 1px;
+  background: rgba(0, 213, 255, 0.7);
+  box-shadow: 0 0 8px rgba(0,213,255,0.8);
+  border-radius: 1px;
+  transform: translateY(-50%);
+}
+
+@keyframes ringRotate {
+  from { transform: translateX(-50%) rotateX(72deg) rotate(0deg); }
+  to   { transform: translateX(-50%) rotateX(72deg) rotate(360deg); }
+}
+
+.holo-assistant.compact .holo-assistant-ring {
+  width: 160px;
+}
+
+/* ── Responsive ── */
 @media (max-width: 520px) {
   .holo-assistant {
     width: min(100%, 260px);
     height: 340px;
   }
-
   .holo-assistant-floor {
-    width: 145px;
+    width: 140px;
+  }
+  .holo-assistant-ring {
+    width: 175px;
+  }
+}
+
+/* ── Accessibilité ── */
+@media (prefers-reduced-motion: reduce) {
+  .holo-assistant-image,
+  .holo-assistant::before,
+  .holo-assistant::after,
+  .holo-assistant-halo,
+  .holo-assistant-floor,
+  .holo-assistant-ring,
+  .holo-particle {
+    animation: none;
   }
 }

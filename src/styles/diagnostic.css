@@ -913,3 +913,59 @@
     transform: none !important;
   }
 }
+
+
+/* ================================
+   FIX HOVER / FOCUS MOBILE
+================================ */
+
+.diagnostic-answer-v4 {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.diagnostic-answer-v4:focus {
+  outline: none;
+}
+
+.diagnostic-answer-v4:focus:not(:focus-visible) {
+  border-color: var(--border-soft);
+  background:
+    linear-gradient(180deg, rgba(22, 42, 70, 0.95), rgba(9, 18, 34, 0.96));
+  box-shadow:
+    var(--shadow-relief),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.diagnostic-answer-v4:focus:not(:focus-visible) span {
+  background: var(--glass-cyan);
+  color: var(--color-cyan);
+  box-shadow: none;
+}
+
+.diagnostic-answer-v4:hover span,
+.diagnostic-answer-v4:focus-visible span {
+  background: var(--gradient-cyan);
+  color: var(--color-bg);
+  box-shadow: var(--glow-cyan);
+}
+
+.diagnostic-answer-v4:hover {
+  border-color: var(--border-cyan-hover);
+  background:
+    linear-gradient(135deg, rgba(0, 213, 255, 0.12), rgba(17, 37, 64, 0.96));
+  box-shadow:
+    var(--shadow-floating),
+    var(--glow-cyan-big);
+}
+
+@media (max-width: 768px) {
+
+    .diagnostic-image-frame-v4{
+        height:300px;
+    }
+
+    .diagnostic-image-frame-v4 img{
+        transform:scale(1.05);
+    }
+
+}

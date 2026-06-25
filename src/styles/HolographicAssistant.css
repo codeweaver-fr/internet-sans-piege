@@ -1,0 +1,124 @@
+.holo-assistant {
+  position: relative;
+  width: min(100%, 320px);
+  height: 420px;
+  margin-inline: auto;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  isolation: isolate;
+}
+
+.holo-assistant.compact {
+  width: min(100%, 230px);
+  height: 310px;
+}
+
+.holo-assistant::before {
+  content: "";
+  position: absolute;
+  inset: 8%;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, rgba(0, 213, 255, 0.2), transparent 64%);
+  filter: blur(30px);
+  z-index: 0;
+  animation: holoPulse 3.6s ease-in-out infinite;
+}
+
+.holo-assistant::after {
+  content: "";
+  position: absolute;
+  inset: 5% 14%;
+  border-radius: 28px;
+  border: 1px solid rgba(0, 213, 255, 0.08);
+  background:
+    linear-gradient(rgba(0, 213, 255, 0.035) 1px, transparent 1px);
+  background-size: 100% 8px;
+  mix-blend-mode: screen;
+  opacity: 0.55;
+  z-index: 4;
+}
+
+.holo-assistant-halo {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(0, 213, 255, 0.24), transparent 62%);
+  filter: blur(28px);
+  z-index: 0;
+}
+
+.holo-assistant-scan {
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #00d5ff, transparent);
+  box-shadow:
+    0 0 18px #00d5ff,
+    0 0 36px rgba(0, 213, 255, 0.45);
+  z-index: 5;
+}
+
+.holo-assistant-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  position: relative;
+  z-index: 3;
+  mix-blend-mode: screen;
+  filter:
+    drop-shadow(0 0 14px rgba(0, 213, 255, 0.75))
+    drop-shadow(0 0 42px rgba(0, 213, 255, 0.42))
+    drop-shadow(0 26px 55px rgba(0, 0, 0, 0.38))
+    saturate(1.25)
+    contrast(1.08);
+}
+
+.holo-assistant-floor {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  width: 180px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 213, 255, 0.28);
+  background:
+    radial-gradient(circle, rgba(0, 213, 255, 0.16), rgba(0, 213, 255, 0.04));
+  box-shadow:
+    0 0 24px rgba(0, 213, 255, 0.35),
+    inset 0 0 18px rgba(0, 213, 255, 0.16);
+  z-index: 1;
+}
+
+.holo-assistant.compact .holo-assistant-floor {
+  width: 132px;
+  height: 18px;
+  bottom: 8px;
+}
+
+@keyframes holoPulse {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.9;
+    transform: scale(1.08);
+  }
+}
+
+@media (max-width: 520px) {
+  .holo-assistant {
+    width: min(100%, 260px);
+    height: 340px;
+  }
+
+  .holo-assistant-floor {
+    width: 145px;
+  }
+}

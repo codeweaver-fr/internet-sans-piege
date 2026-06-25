@@ -6,6 +6,7 @@ import HolographicAssistant from "./components/layout/HolographicAssistant";
 import Home from "./pages/Home";
 import Diagnostic from "./pages/Diagnostic";
 import Result from "./pages/Result";
+import Footer from "./components/Footer";
 
 type Screen = "home" | "boot" | "diagnostic" | "result";
 
@@ -60,7 +61,7 @@ function Boot({ onDone }: { onDone: () => void }) {
           display: "grid",
           gridTemplateColumns: "minmax(0, 460px) 320px",
           alignItems: "center",
-          gap: "3rem",
+          gap: "3rem", zIndex: 10
         }}
       >
         <motion.div
@@ -231,7 +232,7 @@ export default function App() {
         minHeight: "100vh",
         background: "#081220",
         color: "#e8f4ff",
-        overflow: "hidden",
+        overflowX: "hidden"
       }}
     >
       <CyberBackground />
@@ -255,6 +256,7 @@ export default function App() {
           />
         )}
       </AnimatePresence>
+      {screen === "result" && <Footer />}
     </div>
   );
 }

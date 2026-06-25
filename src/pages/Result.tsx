@@ -273,7 +273,7 @@ export default function Result({ score, onRestart }: Props) {
 
       setSubmitStatus("success");
       setSubmitMessage(
-        "Votre demande a bien été envoyée. Vous serez recontacté si un événement est organisé."
+        "Votre demande a bien été envoyée. Vous serez recontacté si un événement est organisé.",
       );
 
       form.reset();
@@ -281,7 +281,7 @@ export default function Result({ score, onRestart }: Props) {
       console.error(error);
       setSubmitStatus("error");
       setSubmitMessage(
-        "L’envoi a échoué. Merci de vérifier votre connexion ou de réessayer plus tard."
+        "L’envoi a échoué. Merci de vérifier votre connexion ou de réessayer plus tard.",
       );
     }
   }
@@ -420,11 +420,27 @@ export default function Result({ score, onRestart }: Props) {
                 >
                   {submitStatus !== "success" ? (
                     <form onSubmit={handleSubmit} className="result-form">
-                      <input type="hidden" name="source" value="Internet Sans Piège" />
-                      <input type="hidden" name="score" value={`${safeScore}/${MAX_SCORE}`} />
-                      <input type="hidden" name="pourcentage" value={`${percentage}%`} />
+                      <input
+                        type="hidden"
+                        name="source"
+                        value="Internet Sans Piège"
+                      />
+                      <input
+                        type="hidden"
+                        name="score"
+                        value={`${safeScore}/${MAX_SCORE}`}
+                      />
+                      <input
+                        type="hidden"
+                        name="pourcentage"
+                        value={`${percentage}%`}
+                      />
                       <input type="hidden" name="niveau" value={result.level} />
-                      <input type="hidden" name="statut" value={result.status} />
+                      <input
+                        type="hidden"
+                        name="statut"
+                        value={result.status}
+                      />
                       <input
                         type="hidden"
                         name="consentement"
@@ -442,8 +458,9 @@ export default function Result({ score, onRestart }: Props) {
                         <h3>Être informé des prochains événements</h3>
 
                         <p>
-                          Laissez vos coordonnées pour être recontacté uniquement
-                          au sujet des événements Internet Sans Piège.
+                          Laissez vos coordonnées pour être recontacté
+                          uniquement au sujet des événements Internet Sans
+                          Piège.
                         </p>
                       </div>
 
@@ -466,9 +483,12 @@ export default function Result({ score, onRestart }: Props) {
                       <label className="form-consent">
                         <input type="checkbox" required />
                         <span>
-                          J’accepte que mes informations soient utilisées
-                          uniquement pour être recontacté au sujet des événements
-                          Internet Sans Piège.
+                          Les informations recueillies via ce formulaire sont
+                          utilisées uniquement pour vous recontacter au sujet
+                          des événements Internet Sans Piège. Elles ne sont ni
+                          revendues, ni utilisées à d’autres fins. Vous pouvez
+                          demander l’accès, la rectification ou la suppression
+                          de vos données à tout moment.
                         </span>
                       </label>
 

@@ -559,6 +559,15 @@
   pointer-events: none;
 }
 
+
+.result-panel-image{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:430px;
+    padding:2rem;
+}
+
 .panel-top {
   height: 42px;
   padding: 0 1rem;
@@ -807,4 +816,88 @@
 
 .thanks-card .secondary-btn {
   margin-top: 1rem;
+}
+
+
+/* ================================
+   FIX MOBILE RESULT SCORE CARD
+================================ */
+
+@media (max-width: 720px) {
+  .result-score-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    padding: 1.4rem 1.1rem;
+    border-radius: 24px;
+
+    text-align: center;
+  }
+
+  .result-gauge {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 1rem;
+  }
+
+  .result-gauge-svg {
+    width: 150px;
+    height: 150px;
+  }
+
+  .result-gauge-content span {
+    font-size: 2rem;
+  }
+
+  .result-score-content {
+    width: 100%;
+  }
+
+  .result-status {
+    text-align: center;
+    margin-bottom: 0.7rem;
+  }
+
+  .result-score-content h2 {
+    text-align: center;
+    font-size: 1.45rem;
+  }
+
+  .result-score-content p {
+    text-align: center;
+    font-size: 0.92rem;
+  }
+
+  .skill-list {
+    width: 100%;
+    margin-top: 1.2rem;
+  }
+
+  .skill-header {
+    text-align: left;
+  }
+}
+
+@media (max-width: 420px) {
+  .result-score-card {
+    padding: 1.2rem 0.95rem;
+    border-radius: 22px;
+  }
+
+  .result-gauge {
+    width: 136px;
+    height: 136px;
+  }
+
+  .result-gauge-svg {
+    width: 136px;
+    height: 136px;
+  }
+
+  .result-gauge-content span {
+    font-size: 1.8rem;
+  }
 }

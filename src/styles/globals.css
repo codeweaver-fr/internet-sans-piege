@@ -736,3 +736,188 @@
     font-size: 10px !important;
   }
 }
+
+.app-shell {
+  position: relative;
+  min-height: 100vh;
+  background: #081220;
+  color: #e8f4ff;
+  overflow-x: hidden;
+}
+
+.boot-screen {
+  min-height: 100vh;
+  padding: 1.5rem;
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.boot-layout {
+  width: min(100%, 1000px);
+  display: grid;
+  grid-template-columns: minmax(0, 460px) 320px;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  transform: translateY(-28px);
+}
+
+.boot-terminal {
+  width: 100%;
+  background: rgba(13, 32, 53, 0.9);
+  border: 1px solid rgba(0, 213, 255, 0.2);
+  border-radius: 18px;
+  padding: 2rem;
+  box-shadow:
+    0 0 60px rgba(0, 213, 255, 0.08),
+    0 0 120px rgba(0, 213, 255, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(18px);
+}
+
+.boot-terminal-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(0, 213, 255, 0.1);
+}
+
+.boot-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.boot-dot-red {
+  background: #ff5f57;
+}
+
+.boot-dot-yellow {
+  background: #febc2e;
+}
+
+.boot-dot-green {
+  background: #28c840;
+}
+
+.boot-terminal-header span {
+  margin-left: 8px;
+  font-family: "Space Mono", monospace;
+  font-size: 11px;
+  color: rgba(0, 213, 255, 0.55);
+  letter-spacing: 1px;
+}
+
+.boot-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.boot-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "Space Mono", monospace;
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.boot-line-icon {
+  min-width: 16px;
+}
+
+.boot-line-icon-ok {
+  color: #00ff88;
+}
+
+.boot-line-icon-warn {
+  color: #ffb800;
+}
+
+.boot-line-text {
+  color: rgba(232, 244, 255, 0.72);
+}
+
+.boot-cursor {
+  color: #00d5ff;
+}
+
+.boot-progress-track {
+  margin-top: 1.5rem;
+  height: 2px;
+  background: rgba(0, 213, 255, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.boot-progress-fill {
+  height: 100%;
+  background: #00d5ff;
+  border-radius: 2px;
+  box-shadow: 0 0 18px rgba(0, 213, 255, 0.7);
+}
+
+.boot-progress-value {
+  margin-top: 8px;
+  text-align: right;
+  font-family: "Space Mono", monospace;
+  font-size: 10px;
+  color: rgba(0, 213, 255, 0.45);
+}
+
+.boot-assistant {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 760px) {
+  .boot-screen {
+    padding: 1rem;
+    align-items: flex-start;
+    padding-top: 2.2rem;
+  }
+
+  .boot-layout {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    transform: none;
+  }
+
+  .boot-assistant {
+    order: -1;
+  }
+
+  .boot-assistant .holo-assistant {
+    height: 260px;
+  }
+
+  .boot-terminal {
+    padding: 1.3rem;
+    border-radius: 16px;
+  }
+}
+
+@media (max-width: 420px) {
+  .boot-screen {
+    padding-top: 1rem;
+  }
+
+  .boot-assistant .holo-assistant {
+    height: 230px;
+  }
+
+  .boot-terminal-header span {
+    font-size: 9px;
+  }
+
+  .boot-line {
+    font-size: 10.5px;
+  }
+}

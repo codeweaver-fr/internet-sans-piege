@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { QUESTIONS } from "../data/questions";
-import "../styles/Diagnostic.css";
+import "../styles/diagnostic.css";
 
 interface Props {
   onDone: (score: number) => void;

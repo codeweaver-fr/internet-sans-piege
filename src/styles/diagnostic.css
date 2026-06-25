@@ -1,0 +1,915 @@
+/* ================================
+   DIAGNOSTIC V4 — SECURITY CENTER
+   Clic direct sur réponse
+================================ */
+
+.diagnostic-page-v4 {
+  min-height: 100vh;
+  padding: var(--page-padding);
+  background: var(--gradient-page);
+  font-family: var(--font-sans);
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1400px;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.diagnostic-page-v4::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    linear-gradient(rgba(0, 213, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 213, 255, 0.025) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: radial-gradient(circle at center, black, transparent 75%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.diagnostic-page-v4::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(0, 213, 255, 0.1), transparent 30%),
+    radial-gradient(circle at 80% 70%, rgba(139, 92, 246, 0.12), transparent 34%);
+  filter: var(--blur-lg);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.diagnostic-shell-v4 {
+  position: relative;
+  width: min(100%, var(--container-wide));
+  z-index: 2;
+}
+
+@keyframes securityFloat {
+  0%,
+  100% {
+    transform: translateY(0) rotateX(0deg);
+  }
+
+  50% {
+    transform: translateY(-8px) rotateX(0.6deg);
+  }
+}
+
+.diagnostic-glow-v4 {
+  position: absolute;
+  width: 900px;
+  height: 900px;
+  top: -420px;
+  left: -180px;
+  background: radial-gradient(circle, rgba(0, 213, 255, 0.12), transparent 68%);
+  pointer-events: none;
+  z-index: -1;
+  filter: var(--blur-xl);
+}
+
+/* ================================
+   HEADER
+================================ */
+
+.diagnostic-topbar-v4 {
+  margin-bottom: 1.6rem;
+  padding: 1.25rem 1.6rem;
+  border-radius: var(--radius-xl);
+  background: var(--gradient-card-deep);
+  border: 1px solid var(--border-cyan);
+  backdrop-filter: var(--blur);
+  box-shadow:
+    var(--shadow-floating),
+    var(--glow-soft);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  transform: translateZ(40px);
+  overflow: hidden;
+  position: relative;
+}
+
+.diagnostic-topbar-v4::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(0, 213, 255, 0.08),
+    transparent
+  );
+  transform: translateX(-100%);
+  animation: headerScan 6s infinite;
+  pointer-events: none;
+}
+
+@keyframes headerScan {
+  0%,
+  70% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.diagnostic-eyebrow-v4 {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--color-cyan);
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  margin-bottom: 0.45rem;
+  display: block;
+}
+
+.diagnostic-topbar-v4 h1 {
+  margin: 0;
+  font-size: clamp(1.45rem, 2.4vw, 2rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  background: linear-gradient(180deg, #fff, var(--color-muted));
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.diagnostic-live-v4 {
+  flex-shrink: 0;
+  padding: 0.65rem 1rem;
+  background: var(--glass-cyan);
+  border: 1px solid var(--border-cyan);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--color-cyan);
+  box-shadow: var(--glow-cyan);
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.diagnostic-live-v4 span {
+  width: 8px;
+  height: 8px;
+  background: var(--color-green);
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 8px;
+  box-shadow: var(--glow-green);
+  animation: pulse 1.8s infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.45;
+    transform: scale(1.35);
+  }
+}
+
+/* ================================
+   PROGRESS
+================================ */
+
+.diagnostic-progress-row-v4 {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-muted);
+  margin-bottom: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.diagnostic-progress-row-v4 strong {
+  color: var(--color-cyan);
+  text-shadow: var(--glow-cyan);
+}
+
+.diagnostic-progress-track-v4 {
+  height: 8px;
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-soft);
+  margin-bottom: 1.8rem;
+  overflow: hidden;
+  box-shadow:
+    var(--shadow-inner),
+    inset 0 2px 6px rgba(0, 0, 0, 0.45);
+}
+
+.diagnostic-progress-fill-v4 {
+  height: 100%;
+  background: var(--gradient-green);
+  box-shadow: var(--glow-cyan-big);
+  border-radius: var(--radius-pill);
+}
+
+/* ================================
+   CONTENT
+================================ */
+
+.diagnostic-content-v4 {
+  position: relative;
+  z-index: 5;
+}
+
+.diagnostic-main-v4 {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(380px, 0.95fr);
+  gap: 1.5rem;
+  position: relative;
+  z-index: 6;
+}
+
+.diagnostic-visual-v4,
+.diagnostic-question-v4 {
+  background: var(--gradient-card-deep);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-soft);
+  box-shadow: var(--shadow-floating);
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform var(--transition-slow),
+    border-color var(--transition-slow),
+    box-shadow var(--transition-slow);
+}
+
+.diagnostic-visual-v4::before,
+.diagnostic-question-v4::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-holographic);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.diagnostic-visual-v4:hover,
+.diagnostic-question-v4:hover {
+  transform: translateY(-4px) scale(1.01);
+  border-color: var(--border-cyan-hover);
+  box-shadow:
+    var(--shadow-deep),
+    var(--glow-cyan);
+}
+
+/* ================================
+   VISUAL
+================================ */
+
+.diagnostic-visual-header-v4 {
+  position: relative;
+  z-index: 2;
+  padding: 0.9rem 1.1rem;
+  background: rgba(0, 0, 0, 0.22);
+  border-bottom: 1px solid var(--border-soft);
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--color-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.diagnostic-visual-header-v4 strong {
+  color: var(--color-cyan);
+  text-align: right;
+}
+
+.diagnostic-image-frame-v4 {
+  min-height: 430px;
+  height: clamp(320px, 42vw, 480px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 2rem;
+  background:
+    radial-gradient(circle at center, rgba(0, 213, 255, 0.08), transparent 55%),
+    linear-gradient(rgba(0, 213, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 213, 255, 0.035) 1px, transparent 1px);
+  background-size: 100% 100%, 22px 22px, 22px 22px;
+}
+
+.diagnostic-image-frame-v4 img {
+  width: 100%;
+  height: 100%;
+  max-width: 94%;
+  max-height: 88%;
+  object-fit: contain;
+  filter:
+    drop-shadow(0 0 22px rgba(0, 213, 255, 0.22))
+    drop-shadow(0 30px 50px rgba(0, 0, 0, 0.35));
+  z-index: 2;
+}
+
+.diagnostic-image-frame-v4::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 50%,
+    rgba(0, 213, 255, 0.045) 50%
+  );
+  background-size: 100% 4px;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.diagnostic-image-frame-v4::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--gradient-cyan);
+  box-shadow: var(--glow-cyan-big);
+  animation: scan 4s linear infinite;
+  z-index: 4;
+  pointer-events: none;
+}
+
+@keyframes scan {
+  0% {
+    top: 0%;
+    opacity: 0;
+  }
+
+  12%,
+  88% {
+    opacity: 1;
+  }
+
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+.corner-v4 {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--color-cyan);
+  z-index: 5;
+  box-shadow: var(--glow-cyan);
+  pointer-events: none;
+}
+
+.corner-v4--tl {
+  top: 20px;
+  left: 20px;
+  border-right: 0;
+  border-bottom: 0;
+}
+
+.corner-v4--tr {
+  top: 20px;
+  right: 20px;
+  border-left: 0;
+  border-bottom: 0;
+}
+
+.corner-v4--bl {
+  bottom: 20px;
+  left: 20px;
+  border-right: 0;
+  border-top: 0;
+}
+
+.corner-v4--br {
+  bottom: 20px;
+  right: 20px;
+  border-left: 0;
+  border-top: 0;
+}
+
+/* ================================
+   QUESTION PANEL
+================================ */
+
+.diagnostic-question-v4 {
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.diagnostic-question-v4 > * {
+  position: relative;
+  z-index: 2;
+}
+
+.diagnostic-tag-v4 {
+  background: var(--glass-cyan);
+  border: 1px solid var(--border-cyan);
+  color: var(--color-cyan);
+  padding: 0.5rem 0.85rem;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  width: fit-content;
+  margin-bottom: 1.2rem;
+  box-shadow: var(--glow-cyan);
+}
+
+.diagnostic-question-v4 h2 {
+  font-size: clamp(1.65rem, 3vw, 2.35rem);
+  font-weight: 850;
+  line-height: 1.05;
+  margin-bottom: 1rem;
+  color: #fff;
+  letter-spacing: -0.04em;
+}
+
+.diagnostic-question-v4 p {
+  color: var(--color-soft);
+  font-size: 0.98rem;
+  line-height: 1.65;
+  margin-bottom: 1.5rem;
+}
+
+.diagnostic-prompt-v4 {
+  font-family: var(--font-mono);
+  color: var(--color-cyan);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1.7px;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+/* ================================
+   ANSWERS — CLIC DIRECT
+================================ */
+
+.diagnostic-answers-v4 {
+  display: grid;
+  gap: 0.72rem;
+  position: relative;
+  z-index: 20;
+}
+
+.diagnostic-answer-v4 {
+  width: 100%;
+  min-height: 64px;
+  padding: 0.85rem 1rem;
+  border-radius: 18px;
+  border: 1px solid var(--border-soft);
+  background:
+    linear-gradient(180deg, rgba(22, 42, 70, 0.95), rgba(9, 18, 34, 0.96));
+  color: #fff;
+  display: grid;
+  grid-template-columns: 42px 1fr 18px;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+  transition:
+    transform 0.18s ease,
+    border-color 0.18s ease,
+    box-shadow 0.18s ease,
+    background 0.18s ease;
+  text-align: left;
+  box-shadow:
+    var(--shadow-relief),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  position: relative;
+  z-index: 30;
+  outline: none;
+  overflow: hidden;
+  user-select: none;
+  pointer-events: auto;
+}
+
+.diagnostic-answer-v4::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      120deg,
+      transparent,
+      rgba(0, 213, 255, 0.08),
+      transparent
+    );
+  transform: translateX(-130%);
+  transition: 0.45s ease;
+  pointer-events: none;
+}
+
+.diagnostic-answer-v4:hover {
+  transform: translateY(-3px);
+  border-color: var(--border-cyan-hover);
+  background:
+    linear-gradient(135deg, rgba(0, 213, 255, 0.12), rgba(17, 37, 64, 0.96));
+  box-shadow:
+    var(--shadow-floating),
+    var(--glow-cyan-big);
+}
+
+.diagnostic-answer-v4:hover::before {
+  transform: translateX(130%);
+}
+
+.diagnostic-answer-v4:active {
+  transform: scale(0.985);
+}
+
+.diagnostic-answer-v4:focus-visible {
+  border-color: var(--color-cyan);
+  box-shadow:
+    0 0 0 3px rgba(0, 213, 255, 0.2),
+    var(--shadow-floating),
+    var(--glow-cyan);
+}
+
+.diagnostic-answer-v4:disabled {
+  pointer-events: none;
+  opacity: 0.65;
+  cursor: wait;
+}
+
+.diagnostic-answer-v4 span {
+  width: 42px;
+  height: 42px;
+  min-width: 42px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--glass-cyan);
+  border: 1px solid var(--border-cyan);
+  color: var(--color-cyan);
+  font-family: var(--font-mono);
+  font-weight: 800;
+  transition: 0.25s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.diagnostic-answer-v4:hover span {
+  background: var(--gradient-cyan);
+  color: var(--color-bg);
+  box-shadow: var(--glow-cyan);
+}
+
+.diagnostic-answer-v4 strong {
+  font-size: 0.94rem;
+  font-weight: 650;
+  line-height: 1.4;
+  position: relative;
+  z-index: 2;
+}
+
+.diagnostic-answer-v4 i {
+  color: var(--color-cyan);
+  opacity: 0.5;
+  font-size: 1.2rem;
+  transition: 0.25s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.diagnostic-answer-v4:hover i {
+  opacity: 1;
+  transform: translateX(4px);
+}
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 1180px) {
+  .diagnostic-page-v4 {
+    align-items: flex-start;
+  }
+
+  .diagnostic-main-v4 {
+    grid-template-columns: 1fr;
+  }
+
+  .diagnostic-image-frame-v4 {
+    min-height: 360px;
+    height: clamp(310px, 52vw, 440px);
+  }
+}
+
+@media (max-width: 900px) {
+  .diagnostic-page-v4 {
+    padding: 1.1rem;
+    perspective: none;
+  }
+
+  .diagnostic-shell-v4 {
+    animation: none;
+    transform: none;
+  }
+
+  .diagnostic-topbar-v4 {
+    padding: 1.2rem;
+    flex-direction: column;
+    align-items: flex-start;
+    transform: none;
+  }
+
+  .diagnostic-main-v4 {
+    gap: 1.1rem;
+  }
+
+  .diagnostic-visual-v4:hover,
+  .diagnostic-question-v4:hover,
+  .diagnostic-answer-v4:hover {
+    transform: none;
+  }
+
+  .diagnostic-answer-v4:active {
+    transform: scale(0.985);
+  }
+
+  .diagnostic-image-frame-v4 {
+    min-height: 320px;
+    height: 360px;
+    padding: 1.3rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .diagnostic-page-v4 {
+    padding: 0.85rem;
+  }
+
+  .diagnostic-topbar-v4 {
+    margin-bottom: 1.2rem;
+    border-radius: 22px;
+  }
+
+  .diagnostic-eyebrow-v4 {
+    font-size: 8.5px;
+    letter-spacing: 2px;
+  }
+
+  .diagnostic-topbar-v4 h1 {
+    font-size: 1.35rem;
+  }
+
+  .diagnostic-live-v4 {
+    font-size: 9.5px;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .diagnostic-progress-row-v4 {
+    font-size: 10px;
+  }
+
+  .diagnostic-progress-track-v4 {
+    margin-bottom: 1.2rem;
+  }
+
+  .diagnostic-visual-header-v4 {
+    padding: 0.8rem 0.95rem;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .diagnostic-visual-header-v4 strong {
+    text-align: left;
+  }
+
+  .diagnostic-image-frame-v4 {
+    min-height: 245px;
+    height: 295px;
+    padding: 0.9rem;
+  }
+
+  .corner-v4 {
+    width: 15px;
+    height: 15px;
+  }
+
+  .corner-v4--tl {
+    top: 13px;
+    left: 13px;
+  }
+
+  .corner-v4--tr {
+    top: 13px;
+    right: 13px;
+  }
+
+  .corner-v4--bl {
+    bottom: 13px;
+    left: 13px;
+  }
+
+  .corner-v4--br {
+    bottom: 13px;
+    right: 13px;
+  }
+
+  .diagnostic-question-v4 {
+    padding: 1.15rem;
+    border-radius: 22px;
+  }
+
+  .diagnostic-tag-v4 {
+    font-size: 8.5px;
+    letter-spacing: 1px;
+    margin-bottom: 0.9rem;
+  }
+
+  .diagnostic-question-v4 h2 {
+    font-size: 1.45rem;
+    margin-bottom: 0.85rem;
+  }
+
+  .diagnostic-question-v4 p {
+    font-size: 0.9rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .diagnostic-prompt-v4 {
+    font-size: 10px;
+    letter-spacing: 1.2px;
+    margin-bottom: 0.85rem;
+  }
+
+  .diagnostic-answers-v4 {
+    gap: 0.62rem;
+  }
+
+  .diagnostic-answer-v4 {
+    min-height: 54px;
+    padding: 0.68rem 0.75rem;
+    border-radius: 15px;
+    grid-template-columns: 34px 1fr 12px;
+    gap: 0.68rem;
+  }
+
+  .diagnostic-answer-v4 span {
+    width: 34px;
+    height: 34px;
+    min-width: 34px;
+    border-radius: 10px;
+    font-size: 0.78rem;
+  }
+
+  .diagnostic-answer-v4 strong {
+    font-size: 0.82rem;
+    line-height: 1.28;
+  }
+
+  .diagnostic-answer-v4 i {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .diagnostic-page-v4 {
+    padding: 0.65rem;
+  }
+
+  .diagnostic-topbar-v4 {
+    padding: 0.95rem;
+  }
+
+  .diagnostic-topbar-v4 h1 {
+    font-size: 1.2rem;
+  }
+
+  .diagnostic-image-frame-v4 {
+    min-height: 220px;
+    height: 250px;
+  }
+
+  .diagnostic-question-v4 {
+    padding: 0.95rem;
+  }
+
+  .diagnostic-question-v4 h2 {
+    font-size: 1.28rem;
+  }
+
+  .diagnostic-answer-v4 {
+    grid-template-columns: 32px 1fr;
+  }
+
+  .diagnostic-answer-v4 i {
+    display: none;
+  }
+}
+
+/* ================================
+   ACCESSIBILITÉ / PERF
+================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .diagnostic-shell-v4,
+  .diagnostic-live-v4 span,
+  .diagnostic-image-frame-v4::after,
+  .diagnostic-topbar-v4::before {
+    animation: none;
+  }
+
+  .diagnostic-answer-v4,
+  .diagnostic-visual-v4,
+  .diagnostic-question-v4 {
+    transition: none;
+  }
+}
+
+/* ================================
+   FIX — ANTI SAUTILLEMENT / STABILITÉ
+================================ */
+
+/* On supprime le flottement global qui fait bouger toute l'interface */
+.diagnostic-shell-v4 {
+  animation: none !important;
+  transform: none !important;
+}
+
+/* Les gros blocs ne doivent pas bouger au hover */
+.diagnostic-visual-v4:hover,
+.diagnostic-question-v4:hover {
+  transform: none !important;
+}
+
+/* On garde seulement un petit effet sur les réponses */
+.diagnostic-answer-v4:hover {
+  transform: translateY(-1px) !important;
+}
+
+/* On évite les changements de layout au clic */
+.diagnostic-answer-v4:active {
+  transform: scale(0.995) !important;
+}
+
+/* On verrouille les dimensions visuelles */
+.diagnostic-main-v4 {
+  align-items: stretch;
+}
+
+.diagnostic-visual-v4,
+.diagnostic-question-v4 {
+  transform: none !important;
+  will-change: auto;
+}
+
+/* On évite que le glow ou les overlays perturbent les clics */
+.diagnostic-page-v4::before,
+.diagnostic-page-v4::after,
+.diagnostic-topbar-v4::before,
+.diagnostic-visual-v4::before,
+.diagnostic-question-v4::before,
+.diagnostic-image-frame-v4::before,
+.diagnostic-image-frame-v4::after,
+.diagnostic-answer-v4::before,
+.diagnostic-glow-v4,
+.corner-v4 {
+  pointer-events: none !important;
+}
+
+/* Clics toujours actifs sur les réponses */
+.diagnostic-answers-v4,
+.diagnostic-answer-v4 {
+  pointer-events: auto !important;
+}
+
+/* Boutons plus stables */
+.diagnostic-answer-v4 {
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  min-height: 62px;
+}
+
+/* En mobile/tablette, aucun effet de mouvement */
+@media (max-width: 900px) {
+  .diagnostic-answer-v4:hover,
+  .diagnostic-answer-v4:active {
+    transform: none !important;
+  }
+}

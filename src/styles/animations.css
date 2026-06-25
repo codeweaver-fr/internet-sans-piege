@@ -1,0 +1,159 @@
+/* ── Scan line ─────────────────────────────────────────── */
+@keyframes scanline {
+  0%   { top: 0%;   opacity: 0; }
+  5%   { opacity: 1; }
+  95%  { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+
+/* ── Entrées ───────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ── Pulsations ────────────────────────────────────────── */
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.3; }
+  50%       { opacity: 1; }
+}
+
+@keyframes pulseDot {
+  0%, 100% { transform: scale(1);   opacity: 1; }
+  50%       { transform: scale(1.5); opacity: 0.6; }
+}
+
+/* ── Boot / terminal ───────────────────────────────────── */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+@keyframes typeIn {
+  from { opacity: 0; transform: translateX(-6px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ── Fond grille ───────────────────────────────────────── */
+@keyframes gridReveal {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── Classes utilitaires ───────────────────────────────── */
+.animate-scanline    { animation: scanline    4s linear infinite; }
+.animate-fade-up     { animation: fadeUp      0.4s ease forwards; }
+.animate-fade-in     { animation: fadeIn      0.4s ease forwards; }
+.animate-pulse-glow  { animation: pulseGlow   2s ease-in-out infinite; }
+.animate-pulse-dot   { animation: pulseDot    1.8s ease-in-out infinite; }
+.animate-blink       { animation: blink       1s step-end infinite; }
+.animate-type-in     { animation: typeIn      0.3s ease forwards; }
+.animate-grid-reveal { animation: gridReveal  1.2s ease forwards; }
+
+/* ── Radar ─────────────────────────────────────────────── */
+
+@keyframes radarRotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes radarPulse {
+  0% {
+    opacity: 0.15;
+    transform: scale(0.95);
+  }
+
+  50% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: 0.15;
+    transform: scale(0.95);
+  }
+}
+
+/* ── Glow cyber ────────────────────────────────────────── */
+
+@keyframes cyberGlow {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 rgba(0, 213, 255, 0),
+      0 0 0 rgba(0, 213, 255, 0);
+  }
+
+  50% {
+    box-shadow:
+      0 0 20px rgba(0, 213, 255, 0.25),
+      0 0 40px rgba(0, 213, 255, 0.1);
+  }
+}
+
+/* ── Particules ────────────────────────────────────────── */
+
+@keyframes particleFloat {
+  0% {
+    transform: translateY(0px);
+    opacity: 0.2;
+  }
+
+  50% {
+    transform: translateY(-12px);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(0px);
+    opacity: 0.2;
+  }
+}
+
+/* ── Ligne de scan horizontale ─────────────────────────── */
+
+@keyframes horizontalScan {
+  0% {
+    left: -40%;
+  }
+
+  100% {
+    left: 140%;
+  }
+}
+
+
+.animate-radar-rotate {
+  animation: radarRotate 50s linear infinite;
+}
+
+.animate-radar-pulse {
+  animation: radarPulse 6s ease-in-out infinite;
+}
+
+.animate-cyber-glow {
+  animation: cyberGlow 3s ease-in-out infinite;
+}
+
+.animate-particle-float {
+  animation: particleFloat 4s ease-in-out infinite;
+}
+
+.animate-horizontal-scan {
+  animation: horizontalScan 8s linear infinite;
+}

@@ -73,7 +73,7 @@ function getResult(score: number) {
       color: "#FFB800",
       glow: "rgba(255,184,0,0.4)",
       description:
-        "Vous avez certains bons réflexes, mais plusieurs pièges peuvent encore vous tromper.",
+        "Vous avez certains bons réflexes, mais plusieurs pièges peuvent encore vous tromper. Bonne nouvelle : ces réflexes peuvent se renforcer avec quelques repères simples.",
       advice: [
         "Méfiez-vous des messages urgents ou alarmants.",
         "Ne donnez jamais de code reçu par SMS.",
@@ -94,7 +94,7 @@ function getResult(score: number) {
     color: "#FF4A4A",
     glow: "rgba(255,74,74,0.4)",
     description:
-      "Plusieurs situations dangereuses n’ont pas été identifiées. Un accompagnement serait utile.",
+      "Plusieurs situations dangereuses n’ont pas été identifiées. Avec un accompagnement simple, vous pouvez apprendre à repérer les pièges les plus courants.",
     advice: [
       "Ne cliquez jamais sous pression.",
       "Ne transmettez pas d’informations sensibles par message.",
@@ -273,7 +273,7 @@ export default function Result({ score, onRestart }: Props) {
 
       setSubmitStatus("success");
       setSubmitMessage(
-        "Votre demande a bien été envoyée. Vous serez recontacté si un événement est organisé."
+        "Votre demande a bien été envoyée. Vous serez informé en priorité lorsqu’un atelier Internet Sans Piège sera proposé.",
       );
 
       form.reset();
@@ -281,7 +281,7 @@ export default function Result({ score, onRestart }: Props) {
       console.error(error);
       setSubmitStatus("error");
       setSubmitMessage(
-        "L’envoi a échoué. Merci de vérifier votre connexion ou de réessayer plus tard."
+        "L’envoi a échoué. Merci de vérifier votre connexion ou de réessayer plus tard.",
       );
     }
   }
@@ -418,53 +418,69 @@ export default function Result({ score, onRestart }: Props) {
             </div>
           </motion.aside>
         </div>
+<div className="result-bottom-flow">
+  <AnimatePresence mode="wait">
+    {shouldOfferWorkshop && !declined && !showForm && (
+      <motion.div
+        key="workshop"
+        className="result-workshop-box"
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -8 }}
+        transition={{ duration: 0.3 }}
+      >
+        <div className="workshop-content">
+          <div>
+            <p className="form-kicker">
+              Continuez à renforcer vos réflexes
+            </p>
 
-        <div className="result-bottom-flow">
-          <AnimatePresence mode="wait">
-            {shouldOfferWorkshop && !declined && !showForm && (
-              <motion.div
-                key="workshop"
-                className="result-workshop-box"
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -8 }}
-                transition={{ duration: 0.3 }}
-              >
-                <p className="form-kicker">
-                  Accompagnement recommandé à une prochaine conférence ou atelier
-                </p>
+            <h3>Votre score est une première étape</h3>
 
-                <h3>Vous souhaitez aller plus loin ?</h3>
+            <p className="workshop-description">
+              Vous avez identifié vos points forts, mais certains réflexes
+              peuvent encore être renforcés.
+            </p>
 
-                <p>
-                  Votre résultat montre que certains réflexes peuvent être
-                  renforcés. Vous pouvez laisser vos coordonnées pour être
-                  informé des prochains événements Internet Sans Piège.
-                </p>
+            <p className="workshop-description">
+              Je prépare des <strong>ateliers pratiques</strong> pour
+              apprendre à reconnaître les arnaques les plus courantes et
+              adopter les bons réflexes au quotidien.
+            </p>
+          </div>
 
-                <div className="result-actions">
-                  <motion.button
-                    type="button"
-                    className="primary-btn"
-                    onClick={() => setShowForm(true)}
-                    whileHover={{ scale: 1.03, y: -1 }}
-                    whileTap={{ scale: 0.97 }}
-                  >
-                    Oui, je souhaite être informé
-                  </motion.button>
+          <div className="workshop-highlight">
+            <span>Prochaine étape</span>
+            <strong>Recevoir une invitation</strong>
+            <p>
+              Aucun spam. Uniquement les informations liées aux ateliers.
+            </p>
+          </div>
+        </div>
 
-                  <motion.button
-                    type="button"
-                    className="secondary-btn"
-                    onClick={handleDecline}
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.97 }}
-                  >
-                    Non merci
-                  </motion.button>
-                </div>
-              </motion.div>
-            )}
+        <div className="result-actions">
+          <motion.button
+            type="button"
+            className="primary-btn"
+            onClick={() => setShowForm(true)}
+            whileHover={{ scale: 1.03, y: -1 }}
+            whileTap={{ scale: 0.97 }}
+          >
+            Oui, je veux être informé
+          </motion.button>
+
+          <motion.button
+            type="button"
+            className="secondary-btn"
+            onClick={handleDecline}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.97 }}
+          >
+            Pas pour le moment
+          </motion.button>
+        </div>
+      </motion.div>
+    )}
 
             {showForm && shouldOfferWorkshop && !declined && (
               <motion.div
@@ -497,7 +513,7 @@ export default function Result({ score, onRestart }: Props) {
                     <input
                       type="hidden"
                       name="consentement"
-                      value="Oui, la personne accepte d'être recontactée au sujet des événements Internet Sans Piège."
+                      value="Oui, la personne accepte d'être recontactée au sujet des ateliers Internet Sans Piège."
                     />
                     <input
                       type="hidden"
@@ -508,14 +524,17 @@ export default function Result({ score, onRestart }: Props) {
                     <div>
                       <p className="form-kicker">Internet Sans Piège</p>
 
-                      <h3>
-                        Être informé des prochains événements conférences,
-                        ateliers, etc.
-                      </h3>
+                      <h3>Être prévenu des prochains ateliers</h3>
 
                       <p>
-                        Laissez vos coordonnées pour être recontacté uniquement
-                        au sujet des événements Internet Sans Piège.
+                        Indiquez votre prénom et votre e-mail pour être informé
+                        uniquement lorsqu’un atelier Internet Sans Piège sera
+                        proposé.
+                      </p>
+
+                      <p className="form-note">
+                        Aucun spam. Uniquement les informations liées aux
+                        ateliers Internet Sans Piège.
                       </p>
                     </div>
 
@@ -540,7 +559,7 @@ export default function Result({ score, onRestart }: Props) {
                       <span>
                         Les informations recueillies via ce formulaire sont
                         utilisées uniquement pour vous recontacter au sujet des
-                        événements Internet Sans Piège. Elles ne sont ni
+                        ateliers Internet Sans Piège. Elles ne sont ni
                         revendues, ni utilisées à d’autres fins. Vous pouvez
                         demander l’accès, la rectification ou la suppression de
                         vos données à tout moment.
@@ -563,7 +582,7 @@ export default function Result({ score, onRestart }: Props) {
                       >
                         {submitStatus === "loading"
                           ? "Envoi en cours..."
-                          : "Envoyer ma demande"}
+                          : "Me prévenir des ateliers"}
                       </motion.button>
 
                       <button
@@ -571,7 +590,7 @@ export default function Result({ score, onRestart }: Props) {
                         className="form-cancel"
                         onClick={handleDecline}
                       >
-                        Finalement non
+                        Pas maintenant
                       </button>
                     </div>
                   </form>
@@ -611,14 +630,12 @@ export default function Result({ score, onRestart }: Props) {
 
                 <h3>Merci pour votre participation</h3>
 
-                <p>
-                  Vous venez de réaliser le diagnostic Internet Sans Piège.
-                </p>
+                <p>Vous venez de réaliser le diagnostic Internet Sans Piège.</p>
 
                 <p>
                   Même sans laisser vos coordonnées, vous avez déjà fait un
-                  premier pas pour renforcer votre vigilance face aux principales
-                  arnaques numériques.
+                  premier pas pour renforcer votre vigilance face aux
+                  principales arnaques numériques.
                 </p>
 
                 <p>
